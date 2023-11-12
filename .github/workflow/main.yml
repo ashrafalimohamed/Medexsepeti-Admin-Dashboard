@@ -1,0 +1,20 @@
+name : Run GUI Admin Code
+on:
+  push:
+    branches: ["master"]
+
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@latest
+      - uses: actions/setup-java@latest
+        with:
+          java-version: "21"
+          cache: maven
+          distribution: "temurin"
+
+      - uses: browser-actions/setup-chrome@latest
+      - run: mvn clean test
+
